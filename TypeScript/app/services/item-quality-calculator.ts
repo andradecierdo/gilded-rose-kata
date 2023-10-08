@@ -59,9 +59,9 @@ export class RegularItem extends ItemQualityManager {
   }
 }
 
-export class ConjuredManaCakeItem extends ItemQualityManager {
+export class ConjuredManaCakeItem extends RegularItem {
   calculateQualityAdjustment(): number {
-    return this.sellIn < 0 ? -4 : -2
+    return super.calculateQualityAdjustment() * 2
   }
 }
 
@@ -71,7 +71,7 @@ export class AgedBrieItem extends ItemQualityManager {
   }
 }
 
-export class BackStagePassesItem extends ItemQualityManager {
+export class BackStagePassesItem extends AgedBrieItem {
   calculateQualityAdjustment(): number {
     if (this.sellIn < 0) {
       return -this.quality // To make the quality equal to zero
@@ -82,7 +82,7 @@ export class BackStagePassesItem extends ItemQualityManager {
     if (this.sellIn < 10) {
       return 2
     }
-    return this.sellIn < 0 ? 2 : 1
+    return super.calculateQualityAdjustment()
   }
 }
 
