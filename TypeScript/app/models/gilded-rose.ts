@@ -1,6 +1,5 @@
-import { IItem } from '@/models/item'
+import { IItemQualityCalculator, IQualityManager } from '@/services'
 
-export interface IGildedRose {
-  items: Array<IItem>
-  updateQuality(): void
+export interface IGildedRose extends IQualityManager {
+  items: Array<IItemQualityCalculator>
 }
