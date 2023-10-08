@@ -1,32 +1,5 @@
-export interface IItem {
-  name: string
-  sellIn: number
-  quality: number
-}
-
-export class Item implements IItem {
-  name: string
-  sellIn: number
-  quality: number
-
-  constructor(name: string, sellIn: number, quality: number) {
-    this.name = name
-    this.sellIn = sellIn
-    this.quality = quality
-  }
-}
-
-export interface IGildedRose {
-  items: Array<Item>
-  updateQuality(): void
-}
-
-enum Enum {
-  Sulfuras = 'Sulfuras, Hand of Ragnaros',
-  AgedBrie = 'Aged Brie',
-  BackStagePassess = 'Backstage passes to a TAFKAL80ETC concert',
-  ConjuredManaCake = 'Conjured Mana Cake',
-}
+import {IGildedRose, IItem, ItemName} from '@/models'
+import { Item } from '@/services'
 
 export class GildedRose implements IGildedRose {
   items: Array<Item>
@@ -39,17 +12,17 @@ export class GildedRose implements IGildedRose {
 
   updateQuality(): void {
     this.items.forEach(item => {
-      if (item.name !== Enum.Sulfuras) {
+      if (item.name !== ItemName.Sulfuras) {
         item.sellIn--
 
         switch (item.name) {
-          case Enum.AgedBrie:
+          case ItemName.AgedBrie:
             this.updateAgedBrieItem(item)
             break
-          case Enum.BackStagePassess:
+          case ItemName.BackStagePassess:
             this.updateBackStagePassesItem(item)
             break
-          case Enum.ConjuredManaCake:
+          case ItemName.ConjuredManaCake:
             this.updateConjuredManaCakeItem(item)
             break
           default:

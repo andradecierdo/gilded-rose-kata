@@ -1,4 +1,5 @@
-import { Item, GildedRose } from '@/gilded-rose'
+import { GildedRose } from '@/services/gilded-rose'
+import { Item } from '@/services'
 
 describe('Gilded Rose', () => {
   const items = [
