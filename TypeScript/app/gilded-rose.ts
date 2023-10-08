@@ -30,6 +30,8 @@ enum Enum {
 
 export class GildedRose implements IGildedRose {
   items: Array<Item>
+  maxQuality = 50
+  minQuality = 0
 
   constructor(items = [] as Array<Item>) {
     this.items = items
@@ -42,45 +44,52 @@ export class GildedRose implements IGildedRose {
 
         switch (item.name) {
           case Enum.AgedBrie:
-            GildedRose.updateAgedBrieItem(item)
+            this.updateAgedBrieItem(item)
             break
           case Enum.BackStagePassess:
-            GildedRose.updateBackStagePassesItem(item)
+            this.updateBackStagePassesItem(item)
             break
           case Enum.ConjuredManaCake:
-            GildedRose.updateConjuredManaCakeItem(item)
+            this.updateConjuredManaCakeItem(item)
             break
           default:
-            GildedRose.updateRegularItem(item)
+            this.updateRegularItem(item)
         }
       }
     })
   }
 
-  private static updateAgedBrieItem(item: IItem): void {
+  private updateAgedBrieItem(item: IItem): void {
     const addition = item.sellIn < 0 ? 2 : 1
-    item.quality = (item.quality + addition) > 50 ? 50 : item.quality + addition
+    item.quality = this.increaseQuality(item.quality, addition)
   }
 
-  private static updateBackStagePassesItem(item: IItem): void {
+  private updateBackStagePassesItem(item: IItem): void {
     if (item.sellIn < 0) {
       item.quality = 0
-    } else if (item.quality < 50) {
+    } else if (item.quality < this.maxQuality) {
       const addition = item.sellIn < 5 ? 3 : item.sellIn < 10 ? 2 : 1
-      let newQuality = item.quality + addition
-      item.quality = newQuality > 50 ? 50 : newQuality
+      item.quality = this.increaseQuality(item.quality, addition)
     }
   }
 
-  private static updateConjuredManaCakeItem(item: IItem): void {
+  private updateConjuredManaCakeItem(item: IItem): void {
     const deduction = item.sellIn < 0 ? -4 : -2
-    const newQuality = item.quality + deduction
-    item.quality = newQuality < 0 ? 0 : newQuality
+    item.quality = this.decreaseQuality(item.quality, deduction)
   }
 
-  private static updateRegularItem(item: IItem): void {
+  private updateRegularItem(item: IItem): void {
     const deduction = item.sellIn < 0 ? -2 : -1
-    const newQuality = item.quality + deduction
-    item.quality = newQuality < 0 ? 0 : newQuality
+    item.quality = this.decreaseQuality(item.quality, deduction)
+  }
+
+  private decreaseQuality(quality: number, deduction: number): number {
+    const newQuality = quality + deduction
+    return newQuality < this.minQuality ? this.minQuality : newQuality
+  }
+
+  private increaseQuality(quality: number, addition: number): number {
+    const newQuality = quality + addition
+    return newQuality > this.maxQuality ? this.maxQuality : newQuality
   }
 }
