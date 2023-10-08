@@ -1,23 +1,34 @@
-export class Item {
-  name: string;
-  sellIn: number;
-  quality: number;
+export interface IItem {
+  name: string
+  sellIn: number
+  quality: number
+}
 
-  constructor(name, sellIn, quality) {
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
+export class Item implements IItem {
+  name: string
+  sellIn: number
+  quality: number
+
+  constructor(name: string, sellIn: number, quality: number) {
+    this.name = name
+    this.sellIn = sellIn
+    this.quality = quality
   }
 }
 
-export class GildedRose {
-  items: Array<Item>;
+export interface IGildedRose {
+  items: Array<Item>
+  updateQuality(): void
+}
+
+export class GildedRose implements IGildedRose {
+  items: Array<Item>
 
   constructor(items = [] as Array<Item>) {
-    this.items = items;
+    this.items = items
   }
 
-  updateQuality() {
+  updateQuality(): void {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
@@ -63,7 +74,5 @@ export class GildedRose {
         }
       }
     }
-
-    return this.items;
   }
 }
