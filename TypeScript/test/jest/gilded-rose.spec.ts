@@ -54,7 +54,7 @@ describe('Gilded Rose', () => {
 
     expect(gildedRose.items[4].name).toBe('Conjured Mana Cake')
     expect(gildedRose.items[4].sellIn).toBe(2)
-    expect(gildedRose.items[4].quality).toBe(5)
+    expect(gildedRose.items[4].quality).toBe(4)
   })
 
   it('should update items quality and sellIn on 2nd day', () => {
@@ -79,7 +79,7 @@ describe('Gilded Rose', () => {
 
     expect(gildedRose.items[4].name).toBe('Conjured Mana Cake')
     expect(gildedRose.items[4].sellIn).toBe(1)
-    expect(gildedRose.items[4].quality).toBe(4)
+    expect(gildedRose.items[4].quality).toBe(2)
   })
 
   it('should update items quality and sellIn on 3rd day', () => {
@@ -103,7 +103,7 @@ describe('Gilded Rose', () => {
 
     expect(gildedRose.items[4].name).toBe('Conjured Mana Cake')
     expect(gildedRose.items[4].sellIn).toBe(0)
-    expect(gildedRose.items[4].quality).toBe(3)
+    expect(gildedRose.items[4].quality).toBe(0)
   })
 
   it('should update items quality and sellIn on 4th day', () => {
@@ -127,7 +127,7 @@ describe('Gilded Rose', () => {
 
     expect(gildedRose.items[4].name).toBe('Conjured Mana Cake')
     expect(gildedRose.items[4].sellIn).toBe(-1)
-    expect(gildedRose.items[4].quality).toBe(1)
+    expect(gildedRose.items[4].quality).toBe(0)
   })
 
   it('should update items quality and sellIn on 5th day', () => {
