@@ -1,5 +1,5 @@
-import { expect } from 'chai';
-import { Item, GildedRose } from '@/gilded-rose';
+import { expect } from 'chai'
+import { GildedRose, Item } from '@/services'
 
 describe('Gilded Rose', () => {
   it('should foo', () => {
