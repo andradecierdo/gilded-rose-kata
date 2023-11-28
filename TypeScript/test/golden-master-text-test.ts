@@ -1,39 +1,31 @@
-import {
-  AgedBrieItem,
-  BackStagePassesItem,
-  ConjuredManaCakeItem,
-  GildedRose,
-  RegularItem,
-  SulfurasItem
-} from '@/services'
+import { GildedRose } from '../app/services'
+import { Item, ItemType } from '../app/models'
 
 const items = [
-  new RegularItem({ name: "+5 Dexterity Vest", sellIn: 10, quality: 20 }),
-  new AgedBrieItem({ name: "Aged Brie", sellIn: 2, quality: 0 }),
-  new RegularItem({ name: "Elixir of the Mongoose", sellIn: 5, quality: 7 }),
-  new SulfurasItem({ name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 }),
-  new SulfurasItem({ name: "Sulfuras, Hand of Ragnaros", sellIn: -1, quality: 80 }),
-  new BackStagePassesItem({ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 15, quality: 20 }),
-  new BackStagePassesItem({ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 49 }),
-  new BackStagePassesItem({ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 49 }),
-  // this conjured item does not work properly yet
-  new ConjuredManaCakeItem({ name: "Conjured Mana Cake", sellIn: 3, quality: 6 })
-];
+  new Item("+5 Dexterity Vest", 10, 20, ItemType.RegularItem), //
+  new Item("Aged Brie", 2, 0, ItemType.AgedBrie), //
+  new Item("Elixir of the Mongoose", 5, 7, ItemType.RegularItem), //
+  new Item("Sulfuras, Hand of Ragnaros", 0, 80, ItemType.Sulfuras), //
+  new Item("Sulfuras, Hand of Ragnaros", -1, 80, ItemType.Sulfuras),
+  new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20, ItemType.BackStagePassess),
+  new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49, ItemType.BackStagePassess),
+  new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49, ItemType.BackStagePassess),
+  new Item("Conjured Mana Cake", 3, 6, ItemType.ConjuredManaCake),
+]
 
-const gildedRose = new GildedRose(items);
+const gildedRose = new GildedRose(items)
 
-let days: number = 2;
+let days: number = 2
 if (process.argv.length > 2) {
-    days = +process.argv[2];
-  }
+  days = +process.argv[2]
+}
 
 for (let i = 0; i < days; i++) {
-  console.log("-------- day " + i + " --------");
-  console.log("name, sellIn, quality");
-  items.forEach(element => {
-    console.log(element.name + ' ' + element.sellIn + ' ' + element.quality);
-
-  });
-  console.log();
-  gildedRose.updateQuality();
+  console.log("-------- day " + i + " --------")
+  console.log("name, sellIn, quality")
+  gildedRose.items.forEach(element => {
+    console.log(element.name + ' ' + element.sellIn + ' ' + element.quality)
+  })
+  console.log()
+  gildedRose.updateQuality()
 }
