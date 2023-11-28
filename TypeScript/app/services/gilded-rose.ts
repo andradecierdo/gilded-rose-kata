@@ -1,14 +1,20 @@
-import { IGildedRose } from '@/models'
-import { IItemQualityCalculator } from '@/services'
+import { IItem, IGildedRose } from '../models'
+import { IItemCalculatorBuilder, ItemCalculatorBuilder } from './'
 
 export class GildedRose implements IGildedRose {
-  items: Array<IItemQualityCalculator>
+  items: IItem[]
+  calculatorBuilder: IItemCalculatorBuilder
 
-  constructor(items = [] as Array<IItemQualityCalculator>) {
+  constructor(items = [] as IItem[]) {
     this.items = items
+    this.calculatorBuilder = new ItemCalculatorBuilder()
   }
 
   updateQuality(): void {
-    this.items.forEach(item => item.updateQuality())
+    this.items = this.items.map(item => {
+      const itemCalculator = this.calculatorBuilder.getItemCalculator(item)
+      itemCalculator.updateQuality()
+      return itemCalculator
+    })
   }
 }

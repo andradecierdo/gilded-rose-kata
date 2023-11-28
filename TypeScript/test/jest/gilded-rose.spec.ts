@@ -1,13 +1,13 @@
-import { GildedRose } from '@/services/gilded-rose'
-import { AgedBrieItem, BackStagePassesItem, ConjuredManaCakeItem, RegularItem, SulfurasItem } from '@/services'
+import { GildedRose } from '../../app/services'
+import { Item, ItemType } from '../../app/models'
 
 describe('Gilded Rose', () => {
   const items = [
-    new RegularItem({ name: "+5 Dexterity Vest", sellIn: 10, quality: 20 }),
-    new AgedBrieItem({ name: "Aged Brie", sellIn: 2, quality: 0 }),
-    new SulfurasItem({ name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 }),
-    new BackStagePassesItem({ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 15, quality: 20 }),
-    new ConjuredManaCakeItem({ name: "Conjured Mana Cake", sellIn: 3, quality: 6 })
+    new Item("+5 Dexterity Vest", 10, 20, ItemType.RegularItem),
+    new Item("Aged Brie", 2, 0, ItemType.AgedBrie),
+    new Item("Sulfuras, Hand of Ragnaros", 0, 80, ItemType.Sulfuras),
+    new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20, ItemType.BackStagePassess),
+    new Item("Conjured Mana Cake", 3,6, ItemType.ConjuredManaCake)
   ]
   const gildedRose = new GildedRose(items)
 

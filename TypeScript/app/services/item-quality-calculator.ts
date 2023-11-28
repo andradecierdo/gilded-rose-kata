@@ -1,5 +1,4 @@
-import { Item } from '@/services/item'
-import { IItem } from '@/models'
+import { IItem, Item } from '../models'
 
 export interface IQualityManager {
   updateQuality(): void
@@ -24,7 +23,7 @@ export abstract class ItemQualityManager extends Item implements IItemQualityCal
   min = 0
 
   constructor(item: IItem) {
-    super(item.name, item.sellIn, item.quality)
+    super(item.name, item.sellIn, item.quality, item.type)
   }
 
   abstract calculateQualityAdjustment(): number
@@ -88,7 +87,7 @@ export class BackStagePassesItem extends AgedBrieItem {
 
 export class SulfurasItem extends Item implements IItemQualityCalculator {
   constructor(item: IItem) {
-    super(item.name, item.sellIn, item.quality)
+    super(item.name, item.sellIn, item.quality, item.type)
   }
 
   updateQuality(): void { } // Do nothing

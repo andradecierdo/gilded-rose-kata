@@ -1,5 +1,7 @@
-import { IItemQualityCalculator, IQualityManager } from '@/services'
+import { IItemCalculatorBuilder, IQualityManager } from '../services'
+import { IItem } from './'
 
 export interface IGildedRose extends IQualityManager {
-  items: Array<IItemQualityCalculator>
+  items: IItem[]
+  calculatorBuilder: IItemCalculatorBuilder
 }
