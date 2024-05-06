@@ -4,7 +4,7 @@ You can find out more about this exercise here: [Why Developers LOVE The Gilded 
 
 
 ## How to use this Kata
-Check the requirements here: ["Gilded Rose Requirements"]([https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/GildedRoseRequirements.txt](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/GildedRoseRequirements.md)) which explains what the code is for.
+Check the requirements here: ["Gilded Rose Requirements"](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/GildedRoseRequirements.md) which explains what the code is for.
 
 
 ## History of the exercise
